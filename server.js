@@ -1,16 +1,28 @@
 /********************************************************************************
-*  WEB322 – Assignment 03
-* 
-*  I declare that this assignment is my own work in accordance with Seneca's
-*  Academic Integrity Policy:
-* 
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-*  Name: __Sukhad Adhikari________ Student ID: ___156518219___________ Date: __2023/10/23____________
+
+* WEB322 – Assignment 03
+
 *
+
+* I declare that this assignment is my own work in accordance with Seneca's
+
+* Academic Integrity Policy:
+
+*
+
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+
+*
+
+* Name: ________Sukhad Adhikari______________ Student ID: _____156518219_________ Date: __2023-10-24____________
+
+*
+
+* Published URL:https://quaint-underwear-bear.cyclic.app/
+
+*
+
 ********************************************************************************/
-
-
 
 const legoData = require("./modules/legoSets");
 
@@ -24,7 +36,7 @@ const HTTP_PORT = 8080
  
 
 app.get("/", (req, res) => {
-  const aboutFilePath = path.join(__dirname, "views", "about.html");
+  const aboutFilePath = path.join(__dirname, "views", "index.html");
   const notFoundFilePath = path.join(__dirname, "views", "404.html");
 
  
@@ -42,7 +54,7 @@ app.get("/", (req, res) => {
  
 app.use(express.static('public'));
 app.get("/about", (req, res) => {
-     res.sendFile(path.join(__dirname, "/views/home.html"))
+     res.sendFile(path.join(__dirname, "/views/about.html"))
 
 
 })
