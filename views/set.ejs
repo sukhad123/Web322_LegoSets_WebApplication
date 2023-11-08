@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+ 
+    
+    <div   class="card w-96 bg-base-100 shadow-xl">
+        <figure class="px-10 pt-10">
+          <img src=<%= set.img_url %> alt="Shoes" class="rounded-xl" />
+        </figure>
+        <div class="card-body items-center text-center">
+          <h2 class="card-title"><%= set.name %> !</h2>
+          
+          <p>Year: <%= set.year %> <br> Theme Id:  <%= set.theme_id %> <br>Parts: <%= set.num_parts %> </p>
+           
+        </div>
+      </div>
+</body>
+</html>
