@@ -21,13 +21,23 @@
         </div>
         
       </div>
+      <div style = "text-align:center">
+      <form action="/Lego/sets?theme=name">
+      <input type="text" name = "theme" placeholder="Search According to Theme" class="input input-bordered input-warning w-full max-w-xs" />
+      </form> 
 
-      <p>
-        <a href = "/lego/sets?theme=technic" class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Technic</a>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
-      </p>
-       
+<script>
+document.getElementById("name").addEventListener("keyup", function(event) {
+if (event.key === "Enter") {
+    event.preventDefault(); // Prevent the default form submission
+    document.getElementById("myForm").submit(); // Submit the form
+}
+});
+</script>
+      </div>
+    </div>
+
+      
      
     
     <!-- <% sets.forEach(user=>{ %>
@@ -45,18 +55,18 @@
         
         </tr>
       <% }) %> -->
-     
-      <% sets.forEach(user=>{ %>
-      <div class="container text-center">
-        <div class="row align-items-start">
-       
-          <div class="col">
-            <div class="card w-96 bg-base-100 shadow-xl">
+      
+        <div class="container">
+          <div class="row">
+            <% sets.forEach(user=>{ %>
+        
+            <div class="col card w-96 bg-base-100 shadow-xl">
                  
                 <figure><img  class = "card-img-top"src=<%= user.img_url %> alt="Shoes" /></figure>
                 <div class="card-body">
                   <h2 class="card-title"><%=user.name%></h2>
-                  <p>Year: <%= user.year %>    |   Parts: <%= user.num_parts %>  </p>
+                  <p>Year: <%= user.year %>    |   Parts: <%= user.num_parts %><br></b>
+                   </p>
 
                   <div class="card-actions justify-end">
                     <a href = "/lego/sets/<%= user.set_num%>">  <button class="btn btn-primary">View Details</button></a>
@@ -66,10 +76,10 @@
                   
                 </div>
               </div>
-             
+              <% }) %>
           </div>
            
       </div>
-      <% }) %>
+    
 </body>
 </html>
