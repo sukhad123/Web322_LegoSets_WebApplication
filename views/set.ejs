@@ -6,6 +6,20 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+
+// Fetch the data from the quotable API
+fetch("https://api.quotable.io/random")
+.then(response => response.json())
+.then(data => {
+   // Update the DOM with the fetched data
+   document.getElementById("quote-content").innerText = data.content;
+   document.getElementById("quote-author").innerText = "- " + data.author;
+})
+.catch(error => console.error("Error fetching data:", error));
+});
+</script>
 </head>
 <body>
   <%- include('partials/navbar') %>
@@ -19,7 +33,15 @@
           <h2 class="card-title"><%= set.name %> !</h2>
           
           <p>Year: <%= set.year %> <br> Theme Id:  <%= set.theme_id %> <br>Parts: <%= set.num_parts %> </p>
-           
+       
+        <div id="quote-container">
+          <p id="quote-content"></p>
+          <p id ="quote-author"></p>
+        </div>
+        <a href = "/lego/sets"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+          Go back
+        </button></a>
+        
         </div>
       </div>
 </body>

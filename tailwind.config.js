@@ -5,7 +5,8 @@ module.exports = {
  './views/technic.ejs',
  './views/401.ejs',
  './views/sets.ejs',
-'./views/partials/navbar.ejs'],
+'./views/partials/navbar.ejs',
+],
 themes: ["light", "dark", "cupcake"],
  
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
