@@ -6,7 +6,7 @@
 * 
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-*  Name: ______________________ Student ID: ______________ Date: ______________
+*  Name: _____Sukhad Adhikari_________________ Student ID: _____156518219_________ Date: _November 12, 2023_____________
 *
 *  Published URL: ________https://quaint-underwear-bear.cyclic.app/___________________________________________________
 *
