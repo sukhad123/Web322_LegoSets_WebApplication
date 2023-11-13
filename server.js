@@ -1,28 +1,17 @@
 /********************************************************************************
-
-* WEB322 – Assignment 03
-
+*  WEB322 – Assignment 04
+* 
+*  I declare that this assignment is my own work in accordance with Seneca's
+*  Academic Integrity Policy:
+* 
+*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+* 
+*  Name: ______________________ Student ID: ______________ Date: ______________
 *
-
-* I declare that this assignment is my own work in accordance with Seneca's
-
-* Academic Integrity Policy:
-
+*  Published URL: ________https://quaint-underwear-bear.cyclic.app/___________________________________________________
 *
-
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-
-*
-
-* Name: ________Sukhad Adhikari______________ Student ID: _____156518219_________ Date: __2023-10-24____________
-
-*
-
-* Published URL:https://quaint-underwear-bear.cyclic.app/
-
-*
-
 ********************************************************************************/
+
 
 const legoData = require("./modules/legoSets");
 
@@ -35,12 +24,7 @@ const HTTP_PORT = 8080
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
  
-let someData = {
-  name: 'John',
-  age: 23,
-  occupation: 'developer',
-  company: 'Scotiabank',
-};
+ 
 app.get("/", (req, res) => {
   const aboutFilePath = path.join(__dirname, "views", "index.ejs");
   const notFoundFilePath = path.join(__dirname, "views", "404");
@@ -49,9 +33,7 @@ app.get("/", (req, res) => {
   fs.access(aboutFilePath, fs.constants.F_OK, (err) => {
     if (!err) {
        
-      res.render('index', {
-        data: someData,
-      });
+      res.render('index');
     } else {
        res.status(404).render("404",{message:"I'm sorry, we are unable to find what you are looking for"});
       
@@ -90,30 +72,7 @@ app.get("/lego/sets/:setNumber", async (req, res) => {
 });
 
  
-// app.get("/lego/sets", async (req, res) => {
-//   try {
-//     const theme = req.query.theme; // Extract the "theme" query parameter
-
-//     if (theme) {
   
-//       const filteredSets = await legoData.getSetsByTheme(theme);
-
-//       if (filteredSets.length > 0) {
-//         res.json(filteredSets);
-//       } else {
-//         res.status(404).send("No sets found for the specified theme");
-//       }
-//     } else {
-      
-//       const allSets = await legoData.getAllSets();
-//       res.json(allSets);
-//     }
-//   } catch (error) {
-//     console.error("Error while retrieving Lego sets:", error);
-//     res.status(404).send("An error occurred while retrieving Lego sets.");
-//   }
-// });
-
 app.get("/lego/sets", async (req, res) => {
   try {
     const theme = req.query.theme; // Extract the "theme" query parameter

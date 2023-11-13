@@ -1769,10 +1769,6 @@ html {
   justify-content: flex-end;
 }
 
-.gap-3 {
-  gap: 0.75rem;
-}
-
 .rounded-lg {
   border-radius: 0.5rem;
 }
