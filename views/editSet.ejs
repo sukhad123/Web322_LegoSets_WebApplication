@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <%- include('partials/navbar') %>
+    <h1>Edit Set<br>
+        <%= set.name %></h1>
+        <form   method="POST" action="/lego/editSet" enctype="application/x-www-form-urlencoded">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" value="<%= set.name %>"  required><br>
+            <label for="year">Year:</label><br>
+            <input type="number" id="year" name="year" value="<%= set.year %>"required><br>
+            <label for="num_parts">Num Parts:</label><br>
+            <input type="number" id="num_parts" name="num_parts"  value="<%= set.num_parts %>"required><br><br>
+            <label for="img_url">Img_Url:</label><br>
+            <input type="url" id="img_url" name="img_url" required><br><br>
+            <label for="theme_id">Theme</label><br>
+            <select id="theme_id" name="theme_id" required>
+                <% themes.forEach(theme=>{ %>
+                    <option <%= (set.theme_id == theme.theme_id) ? "selected" : "" %> value="<%= theme.theme_id %>">
+                      <%= theme.name %>
+                    </option>
+                  <% }) %>
+                  
+            </select><br><br>
+              
+            
+         
+              
+            <label for="set_num">Set Number:</label><br>
+            <input type="text" id="set_num" name="set_num" value="<%= set.set_num %>" readonly class="cursor-not-allowed"><br>
+            
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Update Set
+              </button>
+</body>
+</html>

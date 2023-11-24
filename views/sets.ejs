@@ -65,7 +65,10 @@ if (event.key === "Enter") {
                 <figure><img  class = "card-img-top"src=<%= user.img_url %> alt="Shoes" /></figure>
                 <div class="card-body">
                   <h2 class="card-title"><%=user.name%></h2>
-                  <p>Year: <%= user.year %>    |   Parts: <%= user.num_parts %><br></b>
+                  <p>Year: <%= user.year %>    |   Parts: <%= user.num_parts %><br>
+                    Theme: <%= themes.find(theme => theme.theme_id === user.theme_id).name %>
+                  </p>
+                    </b>
                    </p>
 
                   <div class="card-actions justify-end">
