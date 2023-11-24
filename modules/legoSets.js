@@ -6,8 +6,8 @@ env.config()
 const Sequelize = require('sequelize');
 let sets = [];
 // set up sequelize to point to our postgres database
-const sequelize = new Sequelize('neondb', process.env.DB_USER, 'Xpqrc49ztCGA', {
-  host: 'ep-sweet-moon-96065931.us-east-2.aws.neon.tech',
+const sequelize = new Sequelize('neondb', process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
   dialect: 'postgres',
   port: 5432,
   dialectOptions: {
