@@ -32,7 +32,6 @@ const upload = multer({ dest: 'uploads/' });
 app.get("/", (req, res) => {
   const aboutFilePath = path.join(__dirname, "views", "index.ejs");
   const notFoundFilePath = path.join(__dirname, "views", "404");
-
  
   fs.access(aboutFilePath, fs.constants.F_OK, (err) => {
     if (!err) {
@@ -103,12 +102,19 @@ app.get("/lego/sets", async (req, res) => {
 
 
 
+app.get("/lego/addSet", async (req, res) => {
+  try {
+    const allSets = await legoData.getAllThemes();
+    // Render the 'sets.ejs' template and pass the data to it
+    res.render("addSet", { sets: allSets });
+  } catch (err) {
+    console.error("Error adding data:", err);
 
-app.get("/lego/addSet",async(req,res)=>{
-  const allSets = await legoData.getAllThemes();
-      // Render the 'sets.ejs' template and pass the data to it
-      res.render("addSet", { sets: allSets });
-})
+    // Send a response indicating the error to the client
+    res.status(500).render("500", { message: "I am sorry, but we cannot add this values" });
+  }
+});
+
 
 app.get("/lego/editSet/:setNumber",async(req,res)=>{
   try{
