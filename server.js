@@ -27,7 +27,7 @@ express.urlencoded({extended:true})
 const multer = require('multer');
 app.use(express.urlencoded({ extended: true }));
 require('dotenv').config();
-const upload = multer({ dest: 'uploads/' });
+//const upload = multer({ dest: 'uploads/' });
 
 app.get("/", (req, res) => {
   const aboutFilePath = path.join(__dirname, "views", "index.ejs");
