@@ -9,9 +9,12 @@
 <body>
     
     <%- include('partials/navbar') %>
-    <h1>Edit Set<br>
-        <%= set.name %></h1>
-        <form   method="POST" action="/lego/editSet" enctype="application/x-www-form-urlencoded">
+    <div style = "text-align: center;">
+      <h1>Edit Set<br>
+       Name: <%= set.name %></h1>
+    </div>
+   
+        <form  style= "text-align: center" method="POST" action="/lego/editSet" enctype="application/x-www-form-urlencoded">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" value="<%= set.name %>"  required><br>
             <label for="year">Year:</label><br>

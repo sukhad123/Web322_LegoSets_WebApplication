@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/main.css">
-
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   
     <script>
       document.addEventListener("DOMContentLoaded", () => {
 
@@ -19,8 +20,20 @@ fetch("https://api.quotable.io/random")
 })
 .catch(error => console.error("Error fetching data:", error));
 });
-</script>
- 
+
+
+function confirmDelete() {
+    var result = confirm("Are you sure you want to delete?");
+
+    if (result) {
+      // User clicked "OK" (yes)
+      alert("Deleted!"); 
+    } else {
+      // User clicked "Cancel" (no)
+      alert("Cancelled deletion.");
+    }
+  }
+    </script>
 </head>
 <body>
   <%- include('partials/navbar') %>
@@ -46,14 +59,9 @@ fetch("https://api.quotable.io/random")
       
         <a href = "/lego/editSet/<%= set.set_num %>"><button type="button" class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">UPDATE</button></a>
         
-        <div class="dropdown">
-          <label tabindex="0" class="btn "> <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">DELETE</button></label>
-          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow  rounded-box w-52">
-            <li><a href = "/lego/deleteSet/<%= set.set_num %>">CONFIRM</a></li>
-            <li><a href = "">RETURN</a></li>
-          </ul>
-        </div>
+ 
      
+        <a href = "/lego/deleteSet/<%= set.set_num %>">  <button    class="focus:outline-none text-white bg-red-400 hover:bg-yellow-500 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-red-900" onclick="confirmDelete()">Delete</button></a> 
         
     </div>
       </div>

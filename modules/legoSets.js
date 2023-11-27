@@ -108,7 +108,7 @@ function initialize() {
     return new Promise((resolve, reject) => {
       Set.findAll({include: [Theme], where: {
         '$Theme.name$': {
-        [Sequelize.Op.iLike]: `%${theme}%`
+        [Sequelize.Op.iLike]: `%${theme}`
         }
        }})
         .then((sets) => {

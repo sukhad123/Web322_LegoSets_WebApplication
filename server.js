@@ -62,7 +62,7 @@ app.get("/lego/sets/:setNumber", async (req, res) => {
     const result = await legoData.getSetByNum(setNumValue);
 
     if (result) {
-     // res.json(result);
+     
 
       res.render("set", { set: result });
     } else {
