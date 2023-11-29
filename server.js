@@ -81,14 +81,20 @@ app.get("/lego/sets", async (req, res) => {
     const theme = req.query.theme; // Extract the "theme" query parameter
      const themeData = await legoData.getAllThemes();
     if (theme) {
+      try{
       const filteredSets = await legoData.getSetsByTheme(theme);
-
+       
       if (filteredSets.length > 0) {
         // Render the 'sets.ejs' template and pass the data to it
         res.render("sets", { sets: filteredSets,themes:themeData });
       } else {
         res.status(404).render("404",{message:"I'm sorry, we are unable to find what you are looking for"});
       }
+    }
+    catch(error)
+    {
+      res.status(404).render("404",{message:"There is no matching sets"});
+    }
     } else {
       const allSets = await legoData.getAllSets();
       // Render the 'sets.ejs' template and pass the data to it

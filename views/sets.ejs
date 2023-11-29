@@ -23,66 +23,36 @@
       </div>
       <div style = "text-align:center">
       <form action="/Lego/sets?theme=name">
-      <input type="text" name = "theme" placeholder="Search According to Theme" class="input input-bordered input-warning w-full max-w-xs" />
+      <input type="text" name = "theme" placeholder="Search According to Theme" class="input input-bordered input-warning w-full max-w-xs rounded-full" />
       </form> 
+ 
+      <% sets.forEach(user=>{ %>
+      <div style = "margin:20px; background-color:#67729D; margin:20 px 20px" class="flex flex-row">
+        <div class="flex-1 flex justify-start items-center">
+          <img style="width: 70px;margin-left:10px" src= <%= user.img_url %> alt="Error loading the image!">
+        </div>
 
-<script>
-document.getElementById("name").addEventListener("keyup", function(event) {
-if (event.key === "Enter") {
-    event.preventDefault(); // Prevent the default form submission
-    document.getElementById("myForm").submit(); // Submit the form
-}
-});
-</script>
-      </div>
+    <div class ="basis-1/4">
+      <h1 style ="margin:40px;"><%=user.name%></h1>
     </div>
+        <div class="basis-1/4">
+          <ul style = "margin:20px">
+            <li><p>Parts:<%= user.num_parts %> | Years: <%= user.year %> </p></li>
+          <li> <p><%= themes.find(theme => theme.theme_id === user.theme_id).name %></p></li>
+            </ul>
+         
+        </div>
 
-      
-     
-    
-    <!-- <% sets.forEach(user=>{ %>
-        <tr>
-            <div class="card w-96 bg-base-100 shadow-xl">
-                <figure><img src=<%= user.img_url %> alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title"><%=user.name%></h2>
-                  <p><%= user.year %> </p>
-                  <div class="card-actions justify-end">
-                    <button class="btn btn-primary">View</button>
-                  </div>
-                </div>
-              </div>
         
-        </tr>
-      <% }) %> -->
-      
-        <div class="container">
-          <div class="row">
-            <% sets.forEach(user=>{ %>
+        <div class="basis-1/4">
+          <a href ="/lego/sets/<%= user.set_num%>"><button  style ="margin:40px"class="btn btn-secondary rounded-full">View Details</button></a>
+          
+        </div>
+       
         
-            <div class="col card w-96 bg-base-100 shadow-xl">
-                 
-                <figure><img  class = "card-img-top"src=<%= user.img_url %> alt="Shoes" /></figure>
-                <div class="card-body">
-                  <h2 class="card-title"><%=user.name%></h2>
-                  <p>Year: <%= user.year %>    |   Parts: <%= user.num_parts %><br>
-                    Theme: <%= themes.find(theme => theme.theme_id === user.theme_id).name %>
-                  </p>
-                    </b>
-                   </p>
-
-                  <div class="card-actions justify-end">
-                    <a href = "/lego/sets/<%= user.set_num%>">  <button class="btn btn-primary">View Details</button></a>
-                
-
-                  </div>
-                  
-                </div>
-              </div>
-              <% }) %>
-          </div>
-           
+        
       </div>
-    
+      <% }) %>
+
 </body>
 </html>
