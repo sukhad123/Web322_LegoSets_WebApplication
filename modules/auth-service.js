@@ -110,4 +110,4 @@ function verify(userData) {
 }
 
   
-  module.exports = { initialize,registerUser,verifyUser}
+  module.exports = { initialize,registerUser,}
