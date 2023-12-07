@@ -10,13 +10,16 @@ module.exports = {
  './views/addSet.ejs',
  './views/editSet.ejs',
 './views/partials/navbar.ejs',
+'/views/login.ejs',
+'/views/register.ejs'
 ],
-daisyui:{themes: ["synthwave"]},
+daisyui:{themes: ["halloween"]},
 
 theme: {
   extend: {},
 },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui'),
+  require('@tailwindcss/forms')],
  
 }
 

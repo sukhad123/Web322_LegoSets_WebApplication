@@ -4,6 +4,8 @@ const env = require("dotenv")
 env.config()
   
 const Sequelize = require('sequelize');
+
+ 
 let sets = [];
 // set up sequelize to point to our postgres database
 const sequelize = new Sequelize('neondb', process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -50,8 +52,16 @@ const Set = sequelize.define('Set', {
 });
 
 
+ 
+
+
 Set.belongsTo(Theme, {foreignKey: 'theme_id'})
  
+
+
+
+
+
 function initialize() {
   return new Promise((resolve, reject) => {
      sequelize.sync().then(()=>{
@@ -108,7 +118,7 @@ function initialize() {
     return new Promise((resolve, reject) => {
       Set.findAll({include: [Theme], where: {
         '$Theme.name$': {
-        [Sequelize.Op.iLike]: `%${theme}`
+        [Sequelize.Op.iLike]: `%${theme}%`
         }
        }})
         .then((sets) => {

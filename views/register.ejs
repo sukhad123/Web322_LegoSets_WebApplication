@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register </title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body >
+    <%- include('partials/navbar') %>
+
+    
+            <form   method = "post"  action="/register" enctype="application/x-www-form-urlencoded"> 
+            <label  for = "username"class="text-sm font-large text-white-700 tracking-wide">USERNAME</label>
+            <input class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-950  " id="username" name="username" type="text" placeholder="Username">
+          </div>
+                      </div>
+                                  <div class="space-y-2">
+                      <label class="mb-5 text-sm font-medium text-white-700 tracking-wide"  for = "password">
+                        CREATE YOUR PASSWORD
+                      </label>
+                      <input class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-950"  id="password" name="password"type="password" placeholder="Enter your password">
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="mb-5 text-sm font-medium text-white-700 tracking-wide" for = "password1 ">
+                          CONFIRM YOUR PASSWORD
+                        </label>
+                        <input class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-950" id="password1" name="password1" type="password" placeholder="Confirm your password">
+                      </div>
+                     
+                      <div class="space-y-2">
+                        <label class="mb-5 text-sm font-medium text-white-700 tracking-wide" for = "email">
+                          EMAIL
+                        </label>
+                        <input class="w-full content-center text-base px-4 py-2 border  border-white-300 rounded-lg focus:outline-none focus:border-green-400 text-gray-950" id="email" name="email"type="email" placeholder="Enter your email">
+                      </div>
+                
+                    <button type = "submit"   class ="btn btn-primary">CREATE</button>
+                </form>
+                     
+</body>
+</html>
