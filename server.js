@@ -27,7 +27,20 @@ express.urlencoded({extended:true})
 const multer = require('multer');
 app.use(express.urlencoded({ extended: true }));
 require('dotenv').config();
-//const upload = multer({ dest: 'uploads/' });
+ 
+
+const clientSessions = require('client-sessions');
+app.use(
+  clientSessions({
+    cookieName: 'session', // this is the object name that will be added to 'req'
+    secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', // this should be a long un-guessable string.
+    duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
+    activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
+  })
+);
+
+
+ 
 
 app.get("/", (req, res) => {
   const aboutFilePath = path.join(__dirname, "views", "index.ejs");
@@ -35,8 +48,11 @@ app.get("/", (req, res) => {
  
   fs.access(aboutFilePath, fs.constants.F_OK, (err) => {
     if (!err) {
-       
-      res.render('index');
+ 
+    const session = req.session;
+        res.render('index',{session});
+ 
+     
     } else {
        res.status(404).render("404",{message:"I'm sorry, we are unable to find what you are looking for"});
       
@@ -54,23 +70,35 @@ app.get("/about", (req, res) => {
 
  
 
+function ensureLogin(req, res, next) {
+  if (!req.session.user) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+}
 
- 
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  next()
+});
+
 app.get("/lego/sets/:setNumber", async (req, res) => {
   try {
     const setNumValue = req.params.setNumber; // Extract set number from URL
     const result = await legoData.getSetByNum(setNumValue);
 
     if (result) {
-     
-
-      res.render("set", { set: result });
+      
+       
+      // Pass both 'set' and 'session' in a single object
+      res.render("set", { set: result  });
     } else {
-      res.status(404).render("404",{message:"I'm sorry, we are unable to find what you are looking for"});
+      res.status(404).render("404", { message: "I'm sorry, we are unable to find what you are looking for" });
     }
   } catch (error) {
     console.error("Error while retrieving Lego set by ID:", error);
-    res.status(404).render("404",{message:"I'm sorry, we are unable to find what you are looking for"});
+    res.status(404).render("404", { message: "I'm sorry, we are unable to find what you are looking for" });
   }
 });
 
@@ -98,7 +126,7 @@ app.get("/lego/sets", async (req, res) => {
     } else {
       const allSets = await legoData.getAllSets();
       // Render the 'sets.ejs' template and pass the data to it
-      res.render("sets", { sets: allSets,themes:themeData  });
+      res.render("sets", { sets: allSets,themes:themeData });
     }
   } catch (error) {
     console.error("Error while retrieving Lego sets:", error);
@@ -182,66 +210,77 @@ app.post('/lego/addSet', async (req, res) => {
 });
 
 
-const clientSessions = require('client-sessions');
-app.use(
-  clientSessions({
-    cookieName: 'session', // this is the object name that will be added to 'req'
-    secret: 'o6LjQ5EVNC28ZgK64hDELM18ScpFQr', // this should be a long un-guessable string.
-    duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
-    activeDuration: 1000 * 60, // the session will be extended by this many ms each request (1 minute)
-  })
-);
  
 
-
-app.use((req, res, next) => {
-  res.locals.session = req.session;
-  next()
-});
 
 app.get("/login", (req, res) => {
   res.render("login");
     
 })
 
-
-
-//register route
+ 
 app.get("/register",(req,res) =>
 {
 
   res.render("register");
 }
 );
- 
 
-app.post('/register', async (req, res) => {
-  try {
-    await authData.registerUser(req.body);
-    res.redirect('/login');
-  } catch (err) {
-    // If an error occurs, render the "500" view with an appropriate message
-    res.render("500", { message: ` ${err}` });
-  }
-});
 
-app.post('/login',async(req,res)=>
+app.get("/userHistory",(req,res) =>
 {
+
+  res.render("userHistory");
+}
+);
+ 
+ 
+app.post("/register", (req, res) => {
+  authData.registerUser(req.body).then((success) => {
+    res.render('login', {
+      successMsg: success
+    })
+  }).catch((err) => {
+    res.render('register', {
+      errMsg: err
+    })
+  })
+})
+
+app.post("/login", (req, res) => {
+  req.body.userAgent = req.get("User-Agent")
+  authData.loginUser(req.body).then((user) => {
+    req.session.user = {
+      username: user.username,
+      email: user.email,
+      loginHistory: user.loginHistory
+    }
+      
+    res.redirect("/",)
   
-  try{
-    await authData.verifyUser(req.body)
-    
-      res.redirect('/lego/sets');
-    }
-    catch(err)
-    {
-      res.render("500", {message: ` ${err}`});
-    }
-});
+ 
+  }).catch((err) => {
+    res.render("login", {
+      errMsg: err
+    })
+  })
+ 
+})
 
+app.get("/logout", ensureLogin, (req, res) => {
+  req.session.reset();
+  res.redirect("/")
+})
 
-legoData.initialize().then(authData.initialize).then(() => {
+app.get("*", (req, res) => {
+  res.status(404).send("404")
+})
+
+//main server
+legoData.initialize()
+.then(authData.initialize())
+.then(() => { 
   app.listen(HTTP_PORT, () => {
-    console.log("Server listening on port " + HTTP_PORT);
-  });
-});
+    console.log("server listening on port " + HTTP_PORT)
+  })
+})

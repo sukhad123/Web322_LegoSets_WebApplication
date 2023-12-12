@@ -20,22 +20,35 @@
              
           </ul>
         </div>
-
+   
         <div class="flex-auto">
           <ul class="menu menu-horizontal px-1">
             <li>
               <details open="">
-                <summary>Account</summary>
-                <ul class="p-2 right-0">
-                  <li><a class="active" href="/login">Login</a></li>
-                  <li><a class="" href="/register">Register</a></li>
+                <summary>Account   <% if (session.user) { %> : <%= session.user.username %> <% } %></summary>
+
+                  <ul class="p-2 right-0">
+
+
+                    <% if (session.user) { %>
+                      <li><a class="active" href="/lego/addSet">Add to Collection</a></li>
+                      <li><a class="" href="/userHistory">User History</a></li>
+                      <li><a class="" href="/logout">Logout</a></li>
+                    <% } else { %> 
+                      <li><a class="active" href="/login">Login</a></li>
+                      <li><a class="" href="/register">Register</a></li>
+                    <% } %>
+                    
               </ul></details>
             </li>
              
           </ul>
         </div>
+      
        
       </div >
+ 
+ 
     </div>
 
       </html>

@@ -28,15 +28,15 @@
                     <div class="space-y-5">
                                 <div class="space-y-2">
 
-                                    <form   method = "post"> 
-                                      <label class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
-                      <input class=" w-full text-base px-4 py-2 border  border-black-300 rounded-lg focus:outline-none focus:border-green-400  "style = "color:black"  id="userName" name="userName"type="text" type="" placeholder="username">
+                                    <form   method = "post"  action="/login" enctype="application/x-www-form-urlencoded"> 
+                                      <label for = "username" class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
+                      <input class=" w-full text-base px-4 py-2 border  border-black-300 rounded-lg focus:outline-none focus:border-green-400  "style = "color:black"  id="username" name="username"type="text" type="" placeholder="username">
                       </div>
                                   <div class="space-y-2">
-                      <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                      <label for = "password" class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
                         Password
                       </label>
-                      <input class="w-full content-center text-base px-4 py-2 border  border-black-300 rounded-lg focus:outline-none focus:border-green-400 " id="password" name="password"type="password"  type="" placeholder="Enter your password">
+                      <input class="w-full content-center text-base px-4 py-2 border  border-black-300 rounded-lg focus:outline-none focus:border-green-400 " id="password" name="password"type="password" placeholder="Enter your password">
                     </div>
                       <div class="flex items-center justify-between">
                       <div class="flex items-center">
@@ -53,10 +53,10 @@
                     </div>
                     <div>
                  
-                      <button   class="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+                      <button   class="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500" type = "submit">
                         Sign in
                       </button>
-                    </form>
+               </form>
                     </div>
                     </div>
                     <div class="pt-5 text-center text-gray-400 text-xs">
