@@ -22,7 +22,9 @@ let User;
 
 function initialize() {
     return new Promise((resolve, reject) => {
-        let db = mongoose.createConnection(process.env.MONGO_URI)
+    let db = mongoose.createConnection(process.env.MONGO_URI)
+      //let db =  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
         db.on('error', (err) => {
             reject(err)
         })

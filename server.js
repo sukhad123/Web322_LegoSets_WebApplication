@@ -62,7 +62,8 @@ app.get("/", (req, res) => {
  
 
 app.get("/about", (req, res) => {
-  res.render("about");
+  let error = []; 
+  res.render("about",{error});
     
 })
  
@@ -230,7 +231,7 @@ app.get("/register",(req,res) =>
 
 app.get("/userHistory",(req,res) =>
 {
-
+ 
   res.render("userHistory");
 }
 );
