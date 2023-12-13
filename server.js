@@ -242,7 +242,7 @@ app.post("/register", (req, res) => {
   let error = [];
   authData.registerUser(req.body).then((success) => {
     res.render('login', {
-      successMsg: success
+       error
     })
   }).catch((err) => {
     error = err;
@@ -262,7 +262,7 @@ app.post("/login", (req, res) => {
       loginHistory: user.loginHistory
     }
     
-    res.redirect("/",)
+    res.redirect("/")
   
  
   }).catch((err) => {
