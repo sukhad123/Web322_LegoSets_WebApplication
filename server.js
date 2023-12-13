@@ -254,6 +254,7 @@ app.post("/register", (req, res) => {
 
 app.post("/login", (req, res) => {
   req.body.userAgent = req.get("User-Agent")
+  
   let error = [];
   authData.loginUser(req.body).then((user) => {
     req.session.user = {

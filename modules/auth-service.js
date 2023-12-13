@@ -68,7 +68,6 @@ function registerUser(userData) {
 
     })
 }
-
 function loginUser(userData) {
     return new Promise((resolve, reject) => {
         User.findOne({ username: userData.username })
@@ -78,7 +77,6 @@ function loginUser(userData) {
                     if (result) {
                         const loginHistoryObj = {dateTime: new Date(), userAgent: userData.userAgent}
                         user.loginHistory.push(loginHistoryObj)
-                        console.log(loginHistory);
                         // either add the array of loginHistories or add a single one:
                         User.updateOne({ username: user.username }, { $set: { loginHistory:  user.loginHistory} })
                         .exec()
