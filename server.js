@@ -62,8 +62,8 @@ app.get("/", (req, res) => {
  
 
 app.get("/about", (req, res) => {
-  let error = []; 
-  res.render("about",{error});
+  const session = req.session;
+  res.render("about",{session});
     
 })
  
@@ -232,7 +232,8 @@ app.get("/register",(req,res) =>
 app.get("/userHistory",(req,res) =>
 {
  
-  res.render("userHistory");
+  const session = req.session;
+  res.render("userHistory",{session});
 }
 );
  
