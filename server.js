@@ -1,17 +1,16 @@
 /********************************************************************************
-*  WEB322 – Assignment 05
-* 
-*  I declare that this assignment is my own work in accordance with Seneca's
-*  Academic Integrity Policy:
-* 
-*  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-* 
-*  Name: _____Sukhad Adhikari_________________ Student ID: _____156518219_________ Date: _November 30, 2023_____________
+* WEB322 – Assignment 06
 *
-*  Published URL: _______https://tiny-underwear-yak.cyclic.app___________________________________________________
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+*
+* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
+*
+* Name: __Sukhad Adhikari____________________ Student ID: __156518219____________ Date: __12/12/2023____________
+*
+* Published URL: ___________________________________________________________
 *
 ********************************************************************************/
-
 
 const legoData = require("./modules/legoSets");
 const authData = require('./modules/auth-service');
@@ -214,15 +213,17 @@ app.post('/lego/addSet', async (req, res) => {
 
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  let error = []; 
+  res.render("login",{error});
     
 })
 
  
 app.get("/register",(req,res) =>
 {
-
-  res.render("register");
+  let error = []; 
+  res.render("register",{error});
+   
 }
 );
 
@@ -236,32 +237,36 @@ app.get("/userHistory",(req,res) =>
  
  
 app.post("/register", (req, res) => {
+  let error = [];
   authData.registerUser(req.body).then((success) => {
     res.render('login', {
       successMsg: success
     })
   }).catch((err) => {
+    error = err;
     res.render('register', {
-      errMsg: err
+      error
     })
   })
 })
 
 app.post("/login", (req, res) => {
   req.body.userAgent = req.get("User-Agent")
+  let error = [];
   authData.loginUser(req.body).then((user) => {
     req.session.user = {
       username: user.username,
       email: user.email,
       loginHistory: user.loginHistory
     }
-      
+    
     res.redirect("/",)
   
  
   }).catch((err) => {
+    error = err;
     res.render("login", {
-      errMsg: err
+      error
     })
   })
  
@@ -275,6 +280,8 @@ app.get("/logout", ensureLogin, (req, res) => {
 app.get("*", (req, res) => {
   res.status(404).send("404")
 })
+
+
 
 //main server
 legoData.initialize()
