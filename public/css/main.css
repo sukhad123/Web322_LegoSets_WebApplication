@@ -2190,12 +2190,6 @@ select {
     {
     flex-direction: column;
   }
-
-  .smtg
-    {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 .imagee {
