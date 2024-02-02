@@ -1,16 +1,4 @@
-/********************************************************************************
-* WEB322 – Assignment 06
-*
-* I declare that this assignment is my own work in accordance with Seneca's
-* Academic Integrity Policy:
-*
-* https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
-*
-* Name: __Sukhad Adhikari____________________ Student ID: __156518219____________ Date: __12/12/2023____________
-*
-* Published URL: _______________https://tiny-underwear-yak.cyclic.app____________________________________________
-*
-********************************************************************************/
+ 
 
 const legoData = require("./modules/legoSets");
 const authData = require('./modules/auth-service');
