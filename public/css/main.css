@@ -2186,6 +2186,11 @@ select {
     align-items: flex-start;
   }
 
+  .flex
+    {
+    flex-direction: column;
+  }
+
   .smtg
     {
     flex-direction: column;
