@@ -6,11 +6,18 @@
     .navbar
     {
      flex-direction: column;
+     align-items: flex-start;
     } 
-    .flex
+    
+    .smtg
     {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        
     }
  }
+ .imagee {
+    width: 200px; /* Set the desired width for your images */
+  margin: 10px; 
+  }
  

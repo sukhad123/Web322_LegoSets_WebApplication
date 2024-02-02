@@ -1960,12 +1960,20 @@ select {
           margin-inline-end: 0.5rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.w-1\/6 {
+  width: 16.666667%;
 }
 
 .w-96 {
@@ -2010,6 +2018,10 @@ select {
 
 .flex-col {
   flex-direction: column;
+}
+
+.content-center {
+  align-content: center;
 }
 
 .items-center {
@@ -2140,6 +2152,11 @@ select {
   text-transform: none;
 }
 
+.text-gray-950 {
+  --tw-text-opacity: 1;
+  color: rgb(3 7 18 / var(--tw-text-opacity));
+}
+
 .text-neutral-content {
   --tw-text-opacity: 1;
   color: hsl(var(--nc) / var(--tw-text-opacity));
@@ -2166,13 +2183,20 @@ select {
   .navbar
     {
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  .flex
+  .smtg
     {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
+}
+
+.imagee {
+  width: 200px;
+  /* Set the desired width for your images */
+  margin: 10px;
 }
 
 .hover\:bg-blue-700:hover {
