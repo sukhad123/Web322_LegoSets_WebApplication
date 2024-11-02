@@ -3,6 +3,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
+    "@vercel/postgres": "^0.10.0",
     "aws-sdk": "^2.1502.0",
     "bcryptjs": "^2.4.3",
     "client-sessions": "^0.8.0",
@@ -13,12 +14,15 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
     "multer": "^1.4.5-lts.1",
+    "netlify-cli": "^17.37.2",
+    "netlify-lambda": "^2.0.16",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "run": "^1.4.0",
-    "sequelize": "^6.35.1"
+    "sequelize": "^6.35.1",
+    "serverless-http": "^3.2.0"
   },
   "scripts": {
     "build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css"
