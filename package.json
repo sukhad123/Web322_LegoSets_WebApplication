@@ -21,7 +21,7 @@
     "sequelize": "^6.35.1"
   },
   "scripts": {
-    "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css"
+    "build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css"
   },
   "name": "asgn2",
   "version": "1.0.0",
