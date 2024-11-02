@@ -287,3 +287,4 @@ legoData.initialize()
     console.log("server listening on port " + HTTP_PORT)
   })
 })
+module.exports = app;
