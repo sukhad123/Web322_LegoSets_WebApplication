@@ -40,7 +40,7 @@ To run the project locally:
 
 ## Deployment
 
-This project is deployed on [Tiny Underwear Yak](https://tiny-underwear-yak.cyclic.app). 
+This project is deployed on [Tiny Underwear Yak]([https://tiny-underwear-yak.cyclic.app](https://web322-legosets-webapplication.onrender.com/)). 
 
 ## Contributing
 
